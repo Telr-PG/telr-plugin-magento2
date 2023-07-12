@@ -1,29 +1,23 @@
-# README #
+# Telr Payments Plugin for Magento 2 #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This plugin enables your Magento powered platform to start accepting payments via Telr.
 
-### What is this repository for? ###
+### Installation ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Download package and copy "Telr" directory and past it to your app/code/ directory
+* After past the source code, you need to run command given below
+  php bin/magento setup:upgrade
+  php bin/magento setup:static-content:deploy -f
+  php bin/magento indexer:reindex
+  php bin/magento cache:clean
+  php bin/magento cache:flush
+* Enable and configure Telr Payment in Magento Admin under Stores/Configuration/Payment Methods/Telr Payment
+* Add your 'Store ID' and 'Authentication Key' in the admin panel (Note : If you have not 'Store ID' and 'Authentication Key' please contact with Telr support)
 
-### How do I get set up? ###
+### Requirements ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Magento 2.4.0 Stable or higher
 
-### Contribution guidelines ###
+### License ###
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Copyright © 2023 Telr. All rights reserved. See LICENSE for license details.
