@@ -1,0 +1,12 @@
+<?php
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+    $iFrameUrl = $_SESSION['telr_payment_url'];
+    $_SESSION['telr_payment_url'] = '';
+if($iFrameUrl != ''){
+	$html = "<iframe id= 'telr' src= '" . $iFrameUrl . "' style='width: 100%; height:450px; border: none;' sandbox='allow-forms allow-modals allow-popups-to-escape-sandbox allow-popups allow-scripts allow-top-navigation allow-same-origin'></iframe>";
+}else{
+	$html = 'Sorry, unable to process your transaction at this time. Please try again.';
+}
+echo $html;
+?>

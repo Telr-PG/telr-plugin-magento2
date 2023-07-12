@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <telr_telrpayments>
+                <active>1</active>
+                <model>Telr\TelrPayments\Model\TelrPayments</model>
+                <title>Telr Payments</title>
+                <order_status>pending</order_status>
+                <store_id />
+                <auth_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <cctypes>AE,VI,MC,DI,JCB,DC</cctypes>
+                <allowspecific>0</allowspecific>
+                <min_order_total>0.01</min_order_total>
+                <redirect_url>telr/standard/redirect</redirect_url>
+                <return_url>telr/standard/response</return_url>
+                <cancel_url>telr/standard/cancel</cancel_url>
+                <ivp_update_url>telr/standard/IvpCallback</ivp_update_url>
+                <process_url>telr/standard/process</process_url>
+                <api_url_sandbox>https://secure.telr.com/gateway/order.json</api_url_sandbox>
+                <api_url>https://secure.telr.com/gateway/order.json</api_url>
+            </telr_telrpayments>
+        </payment>
+    </default>
+</config>

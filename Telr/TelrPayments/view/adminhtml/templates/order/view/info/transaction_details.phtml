@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @var \Telr\TelrPayments\Block\Adminhtml\Order\View\Info\TransactionDetails $block
+ */
+$payment = $block->getPayment();
+$orderNumber = $payment->getAdditionalInformation('telr_ref');
+$orderStatus = $payment->getAdditionalInformation('telr_status');
+$orderMessage = $payment->getAdditionalInformation('telr_message');
+
+
+?>
+
+<?php if (!empty($orderNumber)): ?>
+    <br/>
+    <div class="admin__page-section-item-title">
+        <span class="title"><?php echo $block->escapeHtml(__('Telr Transaction Details')); ?></span>
+    </div>
+
+    <div class="admin__page-section-item-content">
+        <div class="order-payment-additional">
+            <?php if(!empty($orderNumber)): ?>
+                <strong><?php echo $block->escapeHtml(__('Transaction Number')); ?> : </strong>
+                <?php echo $block->escapeHtml($orderNumber); ?>
+                </br>
+            <?php endif; ?>
+
+            <?php if(!empty($orderStatus)): ?>
+                <strong><?php echo $block->escapeHtml(__('Transaction Status')); ?> : </strong>
+                <?php echo $block->escapeHtml($orderStatus); ?>
+                </br>
+            <?php endif; ?>
+
+            <?php if(!empty($orderMessage)): ?>
+                <strong><?php echo $block->escapeHtml(__('Message')); ?> : </strong>
+                <?php echo $block->escapeHtml($orderMessage); ?>
+                </br>
+            <?php endif; ?>
+
+        </div>
+    </div>
+<?php endif; ?>
