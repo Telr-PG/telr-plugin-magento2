@@ -28,6 +28,7 @@ define(
                                 var currency = window.checkoutConfig.quoteData.quote_currency_code;
                                 var test_mode = window.checkoutConfig.payment.telr_telrpayments.testMode;
                                 var saved_cards = window.checkoutConfig.payment.telr_telrpayments.savedCards;
+								var language = window.checkoutConfig.payment.telr_telrpayments.language;
 
                                 var telrMessage = {
                                     "message_id": "init_telr_config",
@@ -45,7 +46,8 @@ define(
                                     frameHeight += (saved_cards.length * 110);
                                 }
 
-                                var iframeUrl = "https://secure.telr.com/jssdk/v2/token_frame.html?token=" + Math.floor((Math.random() * 9999999999) + 1);
+                                //var iframeUrl = "https://secure.telr.com/jssdk/v2/token_frame.html?token=" + Math.floor((Math.random() * 9999999999) + 1);
+								var iframeUrl = "https://secure.telr.com/jssdk/v2/token_frame.html?token=" + Math.floor((Math.random() * 9999999999) + 1) + "&lang=" + language;
 ;
                                 var iframeHtml = ' <iframe id="telr_iframe" src= "' + iframeUrl + '" style="width: 100%; height: ' + frameHeight + 'px; border: 0;margin-top: 20px;" sandbox="allow-forms allow-modals allow-popups-to-escape-sandbox allow-popups allow-scripts allow-top-navigation allow-same-origin"></iframe>';
                                 $("#payment_method_telr .payment-method-content").prepend(iframeHtml);
