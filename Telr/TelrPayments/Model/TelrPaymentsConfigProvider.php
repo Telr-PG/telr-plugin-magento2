@@ -64,7 +64,8 @@ class TelrPaymentsConfigProvider implements ConfigProviderInterface
                     'frameMode' => $this->getFramedMode(),
                     'storeId' => $this->method->getConfigData("store_id"),
                     'testMode' => $this->method->getConfigData("sandbox"),
-                    'savedCards' => $savedCards
+                    'savedCards' => $savedCards,
+					'language' => $this->method->getConfigData("telr_lang")
                 ]
             ]
         ] : [];
