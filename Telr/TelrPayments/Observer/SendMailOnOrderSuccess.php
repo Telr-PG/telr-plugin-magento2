@@ -1,5 +1,4 @@
 <?php
-
 namespace Telr\TelrPayments\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
@@ -7,27 +6,24 @@ use Magento\Framework\Event\ObserverInterface;
 class SendMailOnOrderSuccess implements ObserverInterface
 {
     /**
-     * @var \Magento\Sales\Model\OrderFactory
-     */
+    * @var \Magento\Sales\Model\OrderFactory
+    */
     protected $orderModel;
-
     /**
-     * @var \Magento\Sales\Model\Order\Email\Sender\OrderSender
-     */
+    * @var \Magento\Sales\Model\Order\Email\Sender\OrderSender
+    */
     protected $orderSender;
-
     /**
-     * @var \Magento\Checkout\Model\Session $checkoutSession
-     */
+    * @var \Magento\Checkout\Model\Session $checkoutSession
+    */
     protected $checkoutSession;
-
     /**
-     * @param \Magento\Sales\Model\OrderFactory $orderModel
-     * @param \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     *
-     * @codeCoverageIgnore
-     */
+    * @param \Magento\Sales\Model\OrderFactory $orderModel
+    * @param \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
+    * @param \Magento\Checkout\Model\Session $checkoutSession
+    *
+    * @codeCoverageIgnore
+    */
     public function __construct(
         \Magento\Sales\Model\OrderFactory $orderModel,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
@@ -40,9 +36,9 @@ class SendMailOnOrderSuccess implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Framework\Event\Observer $observer
-     * @return void
-     */
+    * @param \Magento\Framework\Event\Observer $observer
+    * @return void
+    */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {	    
 		$orderIds = $observer->getEvent()->getOrderIds();
@@ -50,9 +46,9 @@ class SendMailOnOrderSuccess implements ObserverInterface
 			$this->checkoutSession->setForceOrderMailSentOnSuccess(true);
 			$order = $this->orderModel->create()->load($orderIds[0]);
 			$methodId = $order->getPayment()->getMethodInstance()->getCode();
-
+			
 			if (in_array($methodId,array('telr_telrpayments','telr_applepay'))) {
-					$this->orderSender->send($order, true);
+				$this->orderSender->send($order, true);
 			}
 		}      
     }
