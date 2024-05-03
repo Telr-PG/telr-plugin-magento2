@@ -8,15 +8,21 @@ class SendMailOnOrderSuccess implements ObserverInterface
     /**
     * @var \Magento\Sales\Model\OrderFactory
     */
+	
     protected $orderModel;
+	
     /**
     * @var \Magento\Sales\Model\Order\Email\Sender\OrderSender
     */
+	
     protected $orderSender;
+	
     /**
     * @var \Magento\Checkout\Model\Session $checkoutSession
     */
+	
     protected $checkoutSession;
+	
     /**
     * @param \Magento\Sales\Model\OrderFactory $orderModel
     * @param \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
@@ -24,6 +30,7 @@ class SendMailOnOrderSuccess implements ObserverInterface
     *
     * @codeCoverageIgnore
     */
+	
     public function __construct(
         \Magento\Sales\Model\OrderFactory $orderModel,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
@@ -39,6 +46,7 @@ class SendMailOnOrderSuccess implements ObserverInterface
     * @param \Magento\Framework\Event\Observer $observer
     * @return void
     */
+	
     public function execute(\Magento\Framework\Event\Observer $observer)
     {	    
 		$orderIds = $observer->getEvent()->getOrderIds();
