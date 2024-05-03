@@ -13,8 +13,7 @@ class AfterPlaceOrder
     /**
     * AfterPlaceOrder constructor
     * 
-    */
-	
+    */	
     public function __construct() {}
 	
     /**
@@ -25,8 +24,7 @@ class AfterPlaceOrder
     *
     * @return OrderInterface
     * @throws LocalizedException
-    */
-	
+    */	
     public function afterPlace(OrderManagementInterface $subject, OrderInterface $order): OrderInterface
     {        
         $methodId = $order->getPayment()->getMethodInstance()->getCode();		
