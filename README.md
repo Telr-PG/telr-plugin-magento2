@@ -20,4 +20,4 @@ This plugin enables your Magento powered platform to start accepting payments vi
 
 ### License ###
 
-Copyright © 2023 Telr. All rights reserved. See LICENSE for license details.
+This repository is available under the [MIT license](LICENSE).
