@@ -679,8 +679,12 @@ class TelrPayments extends \Magento\Payment\Model\Method\AbstractMethod {
             $objOrder['cartid'],
             $objOrder['status']['code'],
             $objOrder['transaction']['status'],
-            $objOrder['transaction']['ref'])) {
-            // Missing fields
+            $objOrder['transaction']['ref']))
+        {
+            if(isset($objOrder['status']['code']))
+            {
+                $validateResponse['status_code'] = $objOrder['status']['code'];
+            }
             return $validateResponse;
         }
 
