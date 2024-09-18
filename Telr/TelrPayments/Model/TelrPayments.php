@@ -655,9 +655,15 @@ class TelrPayments extends \Magento\Payment\Model\Method\AbstractMethod {
 
         $payment = $this->_order->getPayment();
         $addonInfo = $payment->getAdditionalInformation();
-        $telr_order_ref = $addonInfo['telr_order_ref'];
 
-        //$this->logDebug(print_r($this->_order->getData(),true));
+        if(isset($addonInfo['telr_order_ref'])){
+            $telr_order_ref = $addonInfo['telr_order_ref'];
+        }else{
+            $validateResponse['status_code'] = -1;
+            $this->logDebug("Error: telr_order_ref is NULL in magento database table against order id ".$order_id);
+            $this->logDebug("Order status updated as CANCELLED against order id ".$order_id);
+            return $validateResponse;
+        }
 
         $params = array(
             'ivp_method'   => 'check',
@@ -684,6 +690,7 @@ class TelrPayments extends \Magento\Payment\Model\Method\AbstractMethod {
             if(isset($objOrder['status']['code']))
             {
                 $validateResponse['status_code'] = $objOrder['status']['code'];
+                $this->logDebug("Order status updated as CANCELLED against order id ".$order_id);
             }
             return $validateResponse;
         }

@@ -7,7 +7,6 @@ class Requery extends \Telr\TelrPayments\Controller\TelrPayments {
     public function execute() {
         $time = (new \DateTime())->modify('-30 minutes')->format('Y-m-d H:i:s');
         $returnUrl = $this->getTelrHelper()->getUrl('checkout/onepage/success');
-        echo "<pre>";
         $collection = $this->_orderCollectionFactory->create()
             ->addAttributeToSelect('*')
             ->setOrder('created_at','desc')
@@ -32,9 +31,6 @@ class Requery extends \Telr\TelrPayments\Controller\TelrPayments {
             {   $order->setStatus(\Magento\Sales\Model\Order::STATE_CANCELED);
                 $order->save();
             }
-            echo "Processed Order Id: " . $orderId . "<br/>";
-            echo "Response: " . print_r($resp) . "<br/>";
         }
-        print_r("Processing Completed."); exit;
     }
 }
