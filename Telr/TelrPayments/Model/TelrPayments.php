@@ -363,8 +363,8 @@ class TelrPayments extends \Magento\Payment\Model\Method\AbstractMethod {
         $params['ivp_cart']            = $this->_order->getRealOrderId().'_'.(string)time();
         $params['ivp_currency']        = $this->_order->getOrderCurrencyCode();
         $params['ivp_amount']          = round($this->_order->getGrandTotal(), 2);
-        $params['bill_fname']          = $billing_address->getName();
-        $params['bill_sname']          = $billing_address->getName();
+        $params['bill_fname']          = $billing_address->getFirstname();
+        $params['bill_sname']          = $billing_address->getLastname();
         $params['bill_addr1']          = $billing_address->getStreet()[0];
         $params['ivp_framed']          = $ivp_framed;
         $params['ivp_lang']            = $telr_lang;
