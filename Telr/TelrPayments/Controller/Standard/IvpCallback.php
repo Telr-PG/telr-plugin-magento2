@@ -7,6 +7,11 @@ class IvpCallback extends \Telr\TelrPayments\Controller\TelrPayments {
     public function execute() {
         $this->getTelrModel()->logDebug("IVP Callback Called");
         $this->getTelrModel()->logDebug(json_encode($_POST));
+        if (!$this->getTelrModel()->verifyIvpSignature($_POST)) {
+            $this->getTelrModel()->logDebug("IVP callback: tran_check mismatch - rejected");
+            die('Invalid signature');
+        }
+
         if (isset($_GET['cart_id']) && !empty($_GET['cart_id']) && !empty($_POST)) {
             // proceed to update order payment details:
             $cartIdExtract = explode("_", $_POST['tran_cartid']);

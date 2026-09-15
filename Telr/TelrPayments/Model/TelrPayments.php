@@ -635,6 +635,49 @@ class TelrPayments extends \Magento\Payment\Model\Method\AbstractMethod {
     }
 
     /**
+     * Verify the tran_check hash sent with an IVP notification.
+     *
+     * The gateway builds the hashed string as the store auth key followed by
+     * ":<value>" for each of the fields below, in this order, using the raw
+     * (un-encoded) values and an empty string for any value it did not set.
+     * tran_check carries the SHA1 of that string.
+     *
+     * @param array $post
+     * @return bool
+     */
+    public function verifyIvpSignature(array $post) {
+        $fields = array(
+            'tran_store',
+            'tran_cartid',
+            'tran_order',
+            'tran_ref',
+            'tran_type',
+            'tran_authstatus',
+            'tran_authcode',
+            'tran_authmessage',
+            'tran_currency',
+            'tran_amount'
+        );
+
+        $received = isset($post['tran_check']) && is_scalar($post['tran_check'])
+            ? (string) $post['tran_check']
+            : '';
+
+        if ($received === '') {
+            return false;
+        }
+
+        // Never logged: contains the auth key.
+        $plain = (string) $this->getConfigData('auth_key');
+        foreach ($fields as $field) {
+            $value = isset($post[$field]) && is_scalar($post[$field]) ? (string) $post[$field] : '';
+            $plain .= ':' . $value;
+        }
+
+        return hash_equals(strtolower(sha1($plain)), strtolower($received));
+    }
+
+    /**
      * Payment request validation
      */
     public function validateResponse($order_id) {
