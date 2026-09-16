@@ -12,7 +12,7 @@ This plugin enables your Magento powered platform to start accepting payments vi
       * php bin/magento cache:clean
       * php bin/magento cache:flush
 * Enable and configure Telr Payment in Magento Admin under Stores/Configuration/Payment Methods/Telr Payment
-* Add your 'Store ID' and 'Authentication Key' in the admin panel (Note : If you have not 'Store ID' and 'Authentication Key' please contact with Telr support)
+* Add your 'Store ID' and 'Authentication Key' in the admin panel (Note : If you don't have 'Store ID' and 'Authentication Key' please contact with Telr support)
 
 ### Requirements ###
 
